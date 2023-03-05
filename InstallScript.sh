@@ -17,7 +17,10 @@ if [ ! -d "/home/transfer" ]; then
 fi
 
 echo -e "${green}[+]${purple}Dropping PimpMyKali in /opt/pimpmykali..${nc}"
-wget https://github.com/Dewalt-arch/pimpmykali/blob/be57a43127a53355454bb90033e6dec4d9075825/pimpmykali.sh -P /opt/
+if [ ! -d "/opt/pimpmykali" ]; then
+	mkdir "/opt/pimpmykali"
+fi
+git clone https://github.com/Dewalt-arch/pimpmykali.git /opt/pimpmykali
 
 echo -e "${green}[+]${purple}Installing GoLang...${nc}"
 sudo apt install -y golang
@@ -47,8 +50,8 @@ wget https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/
 echo -e "${green}[+]${purple}Installing Awesome-Nmap-Grep...${nc}"
 sudo git clone https://github.com/leonjza/awesome-nmap-grep.git /opt/awesome-nmap-grep
 
-echo -e "${green}[+]${purple}Dropping SecLists in /opt/SecLists${nc}"
-git clone https://github.com/danielmiessler/SecLists.git /opt/SecLists
+echo -e "${green}[+]${purple}Dropping SecLists in /usr/share/wordlists${nc}"
+git clone https://github.com/danielmiessler/SecLists.git /usr/share/wordlists
 
 echo -e "${green}[+]${purple}Starting PimpMyKali...${nc}"
-./opt//pimpmykali/pimpmykali.sh
+./opt/pimpmykali/pimpmykali.sh
